@@ -3,6 +3,7 @@ package com.example.spring.full.course.student;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.Locale;
 
 @Entity
@@ -21,8 +22,11 @@ public class Student {
     private Long id;
     private String name;
     private String email;
-    private int age;
     private LocalDate dob;
+
+    @Transient
+    private int age;
+
 
     public Student(){
 
@@ -31,24 +35,24 @@ public class Student {
     public Student(Long id,
                    String name,
                    String email,
-                   LocalDate dob,
-                   int age
+                   LocalDate dob
+//                   int age
                    ) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.age = age;
+//        this.age = age;
         this.dob = dob;
     }
 
     public Student(String name,
                    String email,
-                   LocalDate dob,
-                   int age
+                   LocalDate dob
+//                   int age
                    ) {
         this.name = name;
         this.email = email;
-        this.age = age;
+//        this.age = age;
         this.dob = dob;
     }
 
@@ -77,7 +81,7 @@ public class Student {
     }
 
     public int getAge() {
-        return age;
+        return Period.between(dob, LocalDate.now()).getYears();
     }
 
     public void setAge(int age) {
@@ -98,7 +102,7 @@ public class Student {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", age=" + age +
+//                ", age=" + age +
                 ", dob=" + dob +
                 '}';
     }
