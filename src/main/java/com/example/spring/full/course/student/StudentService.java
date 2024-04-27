@@ -1,11 +1,8 @@
 package com.example.spring.full.course.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,10 +19,10 @@ public class StudentService {
         return studentRepository.findAll(); //returns list to us
     }
 
-    public void addNewStudent(Student student) throws IllegalAccessException {
+    public void addNewStudent(Student student) throws IllegalStateException {
         Optional<Student> studentOptional = studentRepository.findByEmail(student.getEmail());
         if(studentOptional.isPresent()) {
-            throw new IllegalAccessException("email taken");
+            throw new IllegalStateException("This email taken");
         }
         studentRepository.save(student);
     }

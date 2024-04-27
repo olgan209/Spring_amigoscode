@@ -21,8 +21,7 @@ public class StudentController {
     }
 
     @PostMapping
-    public void registerNewStudent(@RequestBody Student student){
+    public void registerNewStudent(@RequestBody Student student) throws IllegalStateException{
         studentService.addNewStudent(student);
-
     }
 }
